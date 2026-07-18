@@ -7,14 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Dependencies (Corregido con /)
+# Dependencies
 node_modules/
 
-# Production (Corregido con /)
+# Build output
 dist/
 dist-ssr/
+build/
 
-# Local env files (¡AÑADIDO POR SEGURIDAD!)
+# Vite cache (IMPORTANTE)
+.vite/
+
+# Tailwind cache (IMPORTANTE)
+.tailwind/
+
+# PNPM store (si usas pnpm)
+.pnpm-store/
+
+# Local env files (seguridad)
 .env
 .env.local
 .env.development.local
@@ -22,13 +32,22 @@ dist-ssr/
 .env.production.local
 *.local
 
+# System files
+.DS_Store
+Thumbs.db
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea/
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Optional: si usas TypeScript
+*.tsbuildinfo
+
+# Creacion documento de apoyo 
+nota.md
