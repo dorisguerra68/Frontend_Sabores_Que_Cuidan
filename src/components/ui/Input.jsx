@@ -6,14 +6,12 @@ export default function Input({
   onChange,
   error,
   disabled = false,
+  className = "",
 }) {
   return (
-    <div className="flex flex-col gap-1 w-full">
-      {label && (
-        <label className="text-sm font-medium text-gray-700">
-          {label}
-        </label>
-      )}
+    <div className={`input-field ${className}`}>
+      
+      {label && <label className="input-label">{label}</label>}
 
       <input
         type={type}
@@ -21,18 +19,10 @@ export default function Input({
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
-        className={`
-          w-full px-4 py-3 rounded-xl border outline-none
-          text-gray-800 placeholder-gray-400
-          transition-all duration-200
-          ${error ? "border-red-500" : "border-gray-300"}
-          ${disabled ? "bg-gray-100 cursor-not-allowed" : "focus:border-green-600"}
-        `}
+        className={`input ${error ? "input-error" : ""} ${disabled ? "input-disabled" : ""}`}
       />
 
-      {error && (
-        <span className="text-sm text-red-500">{error}</span>
-      )}
+      {error && <span className="input-error-text">{error}</span>}
     </div>
   );
 }

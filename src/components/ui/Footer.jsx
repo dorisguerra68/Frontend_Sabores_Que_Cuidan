@@ -1,32 +1,26 @@
 export default function Footer() {
   return (
-    <footer className="bg-white border-t py-6 text-center text-sm text-sqc-dark">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <footer className="footer">
+      <div className="footer-container">
 
         {/* Marca */}
-        <p className="font-semibold text-sqc-green">
+        <p className="footer-brand">
           Sabores que Cuidan
         </p>
 
-        {/* Enlaces */}
-        <div className="flex items-center gap-6 text-sqc-dark">
-          <a href="/indice-insulinico" className="hover:text-sqc-green transition">
-            Índice insulínico
-          </a>
-          <a href="/recetas" className="hover:text-sqc-green transition">
-            Recetas saludables
-          </a>
-          <a href="/evolucion" className="hover:text-sqc-green transition">
-            Tu evolución
-          </a>
-        </div>
+        {/* Enlaces 
+        <nav className="footer-links">
+          <a href="/indice-insulinico">Índice insulínico</a>
+          <a href="/recetas">Recetas saludables</a>
+          <a href="/evolucion">Tu evolución</a>
+        </nav>*/}
 
         {/* Copyright */}
-        <p className="text-xs text-gray-500">
+        <p className="footer-copy">
           © 2026 Sabores que Cuidan · Salud y bienestar
         </p>
+
       </div>
     </footer>
   );
 }
-

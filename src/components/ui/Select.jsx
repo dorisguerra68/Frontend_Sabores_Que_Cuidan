@@ -5,28 +5,20 @@ export default function Select({
   options = [],
   error,
   disabled = false,
+  className = "",
 }) {
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className={`select-field ${className}`}>
+      
       {/* Label */}
-      {label && (
-        <label className="text-sm font-medium text-gray-700">
-          {label}
-        </label>
-      )}
+      {label && <label className="select-label">{label}</label>}
 
       {/* Select */}
       <select
         value={value}
         onChange={onChange}
         disabled={disabled}
-        className={`
-          w-full px-4 py-3 rounded-xl border outline-none
-          text-gray-800 bg-white
-          transition-all duration-200
-          ${error ? "border-red-500" : "border-gray-300"}
-          ${disabled ? "bg-gray-100 cursor-not-allowed" : "focus:border-green-600"}
-        `}
+        className={`select ${error ? "select-error" : ""} ${disabled ? "select-disabled" : ""}`}
       >
         <option value="" disabled>
           Selecciona una opción
@@ -40,10 +32,7 @@ export default function Select({
       </select>
 
       {/* Error */}
-      {error && (
-        <span className="text-xs text-red-500">{error}</span>
-      )}
+      {error && <span className="select-error-text">{error}</span>}
     </div>
   );
 }
-

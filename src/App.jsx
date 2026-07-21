@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import PublicLayout from "../src/layouts/PublicLayouts";
-import Welcome from "../src/pages/Welcome";
+import PublicLayout from "./layouts/WelcomeLayout";
+import Welcome from "./pages/Welcome";
 
 export default function App() {
   return (

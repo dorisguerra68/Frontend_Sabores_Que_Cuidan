@@ -1,0 +1,79 @@
+/* ============================================
+   🖥️ Sabores que Cuidan – Responsive Ordenador
+   Archivo: responsive-ordenador.css
+   ============================================ */
+
+/* Breakpoint para ordenadores */
+@media (min-width: 1024px) {
+
+  /* Layout general */
+  .welcome-layout {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 2rem 0;
+  }
+
+  /* Hero principal */
+  .hero-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 3rem 0;
+  }
+
+  .hero-desktop img {
+    width: 45%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-desktop .hero-text {
+    width: 50%;
+  }
+
+  /* Títulos grandes */
+  .title-desktop {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle-desktop {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  /* Botones en ordenador */
+  .btn-desktop {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: var(--radius);
+  }
+
+  /* Grid de tarjetas */
+  .grid-desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .card-desktop {
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background: white;
+  }
+
+  /* Footer en ordenador */
+  .footer-desktop {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-top: 1px solid #ddd;
+  }
+}
+

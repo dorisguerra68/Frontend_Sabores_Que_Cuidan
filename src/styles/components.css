@@ -1,0 +1,119 @@
+/*boton*/
+.btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0.9rem 1.5rem;
+
+    border:none;
+    border-radius:var(--radius);
+
+    font-size:1rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.btn-primary{
+    background:var(--color-primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:var(--color-button-hover);
+    transform:translateY(-2px);
+}
+.btn-outline{
+    background:white;
+    color:var(--color-primary);
+
+    border:2px solid var(--color-primary);
+}
+
+.btn-outline:hover{
+    background:#f4f4f4;
+}
+
+
+
+/*card*/
+.card {
+  background: white;
+  padding: var(--spacing-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card{
+    background:white;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+}
+
+/* SELECT FIELD WRAPPER */
+.select-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
+
+/* LABEL */
+.select-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* SELECT BASE */
+.select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.select{
+    transition:
+        border-color .25s,
+        box-shadow .25s;
+}
+
+
+  .select:focus{
+
+    border-color:var(--color-primary);
+        
+    box-shadow:0 0 0 3px rgba(108,127,51,.15);
+
+}
+
+
+/* ERROR */
+.select-error {
+  border-color: #e53935;
+}
+
+.select-error-text {
+  font-size: 0.8rem;
+  color: #e53935;
+  font-weight: 500;
+}
+
+/* DISABLED */
+.select-disabled {
+  background: #f2f2f2;
+  cursor: not-allowed;
+  border-color: #ddd;
+}

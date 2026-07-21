@@ -9,16 +9,13 @@ export default function FormField({
   error,
   helper,
   disabled = false,
+  className = "",
 }) {
   return (
-    <div className="flex flex-col gap-2 w-full">
-      {/*etiqueta de formulario*/}
+    <div className={`form-field ${className}`}>
+      
       {/* Label */}
-      {label && (
-        <label className="text-sm font-medium text-gray-700">
-          {label}
-        </label>
-      )}
+      {label && <label className="form-label">{label}</label>}
 
       {/* Input */}
       <Input
@@ -30,16 +27,15 @@ export default function FormField({
         disabled={disabled}
       />
 
-      {/* Texto de ayuda */}
+      {/* Helper */}
       {helper && !error && (
-        <span className="text-xs text-gray-500">{helper}</span>
+        <span className="form-helper">{helper}</span>
       )}
 
-      {/* Error  */}
+      {/* Error */}
       {error && (
-        <span className="text-xs text-red-500">{error}</span>
+        <span className="form-error">{error}</span>
       )}
     </div>
   );
 }
-
