@@ -1,0 +1,151 @@
+/* ==========================================
+   🌿 SABORES QUE CUIDAN – RegistrarComida.css
+========================================== */
+
+.registrar-layout {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+}
+
+.registrar-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Cabecera y Botón Volver */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.registrar__title {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.registrar__subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    opacity: 0.8;
+}
+
+/* 5 Pestañas Horizontales */
+.registrar__tabs {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 0.5rem;
+    overflow-x: auto; /* Permite scroll horizontal en móviles si no caben las 5 */
+}
+
+.tab-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    opacity: 0.6;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.tab-btn:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.tab-btn--active {
+    opacity: 1;
+    color: var(--color-primary);
+    border-bottom: 3px solid var(--color-primary);
+    background-color: var(--color-surface);
+}
+
+/* Caja contenedora interna */
+.registrar__content-box {
+    background-color: var(--color-surface);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.current-tab-title {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* Buscador */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+}
+
+.search-icon {
+    color: var(--color-text);
+    opacity: 0.5;
+    font-size: 1.2rem;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    outline: none;
+}
+
+/* Marcador de posición temporal */
+.registrar__results-placeholder {
+    padding: 3rem;
+    border: 2px dashed rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    text-align: center;
+    color: var(--color-text);
+    opacity: 0.6;
+}
+
+.btn-calcular {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .registrar__content-box {
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,30 @@
+/* styles/variables.css */
+
+:root {
+  /* Colores */
+  --color-primary: #6c7f33;
+  --color-secondary: #f3a74b;
+  --color-background: #f8f0dc;
+  --color-surface: #fffdf8;
+  --color-text: #3b3228;
+  --color-light: #ffffff;
+  --color-button-hover: #5a6a2b;
+
+  /* Bordes */
+  --radius: 12px;
+  --radius-large: 2.5rem;
+
+  /* Espaciados */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Sombras */
+  --shadow: 0 4px 10px rgba(0,0,0,.08);
+  --shadow-large: 0 20px 45px rgba(0,0,0,.18);
+
+  /* Contenedor */
+  --container-width: 1400px;
+}
