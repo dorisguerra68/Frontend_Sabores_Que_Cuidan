@@ -98,6 +98,13 @@ body {
 /* ----------------------------
    Layouts
 ---------------------------- */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -109,11 +116,21 @@ body {
   flex-direction: column;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .grid {
   display: grid;
   gap: var(--spacing-md);
 }
 
+.layout-container{
+    min-height: calc(100vh - 140px);
+    padding: 2rem 1rem;
+    background-color: var(--background-color);
+}
 /* ----------------------------
    Texto
 ---------------------------- */

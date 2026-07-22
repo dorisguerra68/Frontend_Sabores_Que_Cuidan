@@ -1,79 +1,54 @@
 /* ============================================
    🖥️ Sabores que Cuidan – Responsive Ordenador
-   Archivo: responsive-ordenador.css
+   Archivo: Responsive-ordenador.css
    ============================================ */
 
-/* Breakpoint para ordenadores */
+/* Breakpoint para pantallas grandes de ordenador */
 @media (min-width: 1024px) {
 
-  /* Layout general */
-  .welcome-layout {
-    width: 90%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 2rem 0;
-  }
-
-  /* Hero principal */
-  .hero-desktop {
+  .welcome {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    padding: 3rem 0;
-  }
-
-  .hero-desktop img {
-    width: 45%;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-desktop .hero-text {
-    width: 50%;
-  }
-
-  /* Títulos grandes */
-  .title-desktop {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-
-  .subtitle-desktop {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 2rem;
-  }
-
-  /* Botones en ordenador */
-  .btn-desktop {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border-radius: var(--radius);
-  }
-
-  /* Grid de tarjetas */
-  .grid-desktop {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .card-desktop {
+    align-items: center;      /* Centrado vertical absoluto */
+    justify-content: center;    /* Centrado horizontal absoluto */
+    background-color: var(--color-background);
     padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    background: white;
-  }
-
-  /* Footer en ordenador */
-  .footer-desktop {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 0;
-    border-top: 1px solid #ddd;
-  }
 }
 
+
+  /* Ampliamos el contenedor principal para aprovechar pantallas grandes */
+  .welcome__container {
+    max-width: var(--container-width);
+    gap: 6rem;
+    padding: var(--spacing-xl) 0;
+  }
+
+  /* Hacemos los textos un poco más grandes y vistosos en escritorio */
+  .brand__text {
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hero__description {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  /* Aumentamos el tamaño máximo de la imagen en ordenadores */
+  .welcome__image {
+    max-width: 550px;
+  }
+
+  /* Ajustamos la posición exacta de la tarjeta flotante en pantallas grandes */
+  .result-card {
+    left: -50px;
+    bottom: 50px;
+    transform: scale(1.05); /* Le da un ligero realce visual */
+    transition: transform 0.3s ease;
+  }
+
+  .result-card:hover {
+    transform: scale(1.08) translateY(-5px); /* Efecto interactivo premium */
+  }
+}

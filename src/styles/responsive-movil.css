@@ -1,75 +1,67 @@
-/* ============================================
-   📱 Sabores que Cuidan – Responsive Móvil
-   Archivo: responsive-movil.css
-   ============================================ */
+/* ==========================================
+   🌿 SABORES QUE CUIDAN – Responsive-movil.css
+   Aplica solo en pantallas de teléfonos y tablets
+========================================== */
 
-/* Breakpoint para móviles */
 @media (max-width: 768px) {
-
-  /* Contenedor general */
-  .mobile-container {
-    width: 95%;
-    margin: auto;
-    padding: 1rem 0;
+  
+  /* 1. Pasamos el contenedor a una sola columna vertical */
+  .welcome__container {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+    padding: var(--spacing-lg) var(--spacing-md);
+    min-height: auto;
   }
 
-  /* Hero móvil */
-  .hero-mobile {
+  /* 2. Alineación centrada para textos y elementos */
+  .welcome__content {
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 1.5rem;
-    padding: 2rem 0;
   }
 
-  .hero-mobile img {
+  .brand {
+    align-items: center; /* Centra el logo y badge en móviles */
+    margin-bottom: var(--spacing-md);
+  }
+
+  .brand__text {
+    font-size: 1.8rem; /* Reducimos tipografía para pantallas pequeñas */
+  }
+
+  /* 3. Botones uno debajo de otro para mejor área de clic */
+  .hero__buttons {
+    flex-direction: column;
     width: 100%;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    max-width: 300px;
+    gap: var(--spacing-sm);
   }
 
-  /* Textos */
-  .title-mobile {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+  .btn {
+    width: 100%; /* Botones de ancho completo en móvil */
   }
 
-  .subtitle-mobile {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Botones */
-  .btn-mobile {
+  /* 4. Ajustes en la sección de la imagen */
+  .welcome__image-section {
     width: 100%;
-    padding: 0.9rem;
-    font-size: 1rem;
-    border-radius: var(--radius);
+    justify-content: center;
+    margin-top: var(--spacing-md);
   }
 
-  /* Grid móvil (1 columna) */
-  .grid-mobile {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-    margin-top: 2rem;
+  .welcome__image {
+    max-width: 350px; /* Evita que la foto sea gigante en móviles */
   }
 
-  .card-mobile {
-    padding: 1.2rem;
-    border-radius: var(--radius);
+  /* 5. Tarjeta Flotante Adaptada (Evita que se salga de la pantalla) */
+  .result-card {
+    position: relative; /* Cambia de absoluto a relativo para fluir en vertical */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 320px;
+    margin: var(--spacing-md) auto 0 auto; /* Se posiciona de forma segura bajo la imagen */
     box-shadow: var(--shadow);
-    background: white;
-  }
-
-  /* Footer móvil */
-  .footer-mobile {
-    text-align: center;
-    padding: 1.5rem 0;
-    border-top: 1px solid #ddd;
   }
 }
-

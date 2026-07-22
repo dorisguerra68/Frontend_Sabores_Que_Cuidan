@@ -1,344 +1,325 @@
 /* ==========================================
-   SABORES QUE CUIDAN
-   Welcome.css
-   Pantalla de bienvenida
+   SABORES QUE CUIDAN – Welcome.css
 ========================================== */
-
-
-/* ===========================
-   CONTENEDOR PRINCIPAL
-=========================== */
 
 .welcome {
     width: 100%;
+    position: relative;
+    background-color: var(--color-background);
 }
 
 .welcome__container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     min-height: calc(100vh - 160px);
-
     display: flex;
-    display: grid;
-    justify-content: space-between;
     align-items: center;
-    gap: 5rem;
-
-    padding: 4rem 2rem;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: var(--spacing-xl) var(--spacing-lg);
 }
-
 
 /* ===========================
    COLUMNA IZQUIERDA
 =========================== */
-
+/* Adelanto de lo que haremos al volver para el fondo verde militar */
 .welcome__content {
-    flex:2%;
+    flex: 1;
+    max-width: 50%; /* Ocupará la mitad exacta */
+    background-color: #8a7012cf; /* Un tono verde militar/oliva oscuro sugerido */
+    color: var(--color-light); /* Cambiamos los textos a blanco para que contrasten *//* ==========================================
+   🌿 SABORES QUE CUIDAN – Pantalla Dividida (50/50)
+========================================== */
+
+/* Contenedor padre de toda la página */
+.welcome {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--color-background); /* Color crema de fondo para el lado derecho */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-
-/* ===========================
-   LOGO
-=========================== */
-
-.brand {
+/* Eliminamos la caja blanca y convertimos este div en el contenedor de las dos mitades */
+.welcome__container {
+    width: 100%;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    margin-bottom: 2rem;
+    flex-direction: row; /* Asegura las dos columnas en escritorio */
+    margin: 0;
+    padding: 0;
 }
 
-.brand__logo {
-    width: 10px;
-    height: 10px;
-
-    border-radius: 50%;
-
-    background: #5b8f55;
-    color: white;
-
+/* ==========================================
+   COLUMNA IZQUIERDA: VERDE MILITAR COMPLETO
+========================================== */
+.welcome__content {
+    flex: 1;
+    width: 50%; /* Ocupa exactamente la mitad de la pantalla */
+    min-height: 100vh;
+    background-color: #9a863a; /* El tono exacto de verde oliva de tu captura */
+    
+    /* Centrado absoluto de los elementos internos */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     
-
-    font-size: 0.5 rem;
+    padding: 4rem var(--spacing-lg);
 }
 
-.brand__text h3 {
-    margin: 0;
-
-    font-size: 1.6rem;
-    color: #31563b;
-}
-
-.brand__text p {
-    margin-top: .3rem;
-
-    color: #666;
-    font-size: .95rem;
-}
-
-
-/* ===========================
-   BADGE
-=========================== */
-
-.badge {
-    display: inline-block;
-
-    padding: .7rem 1.2rem;
-
+/* Elementos de la columna izquierda */
+.brand__logo {
+    width: 180px; /* Tamaño grande y protagonista */
+    height: auto;
     margin-bottom: 2rem;
-
-    border-radius: 100px;
-
-    background: #eef7ea;
-    color: #4b7c49;
-
-    font-weight: 600;
-    font-size: .9rem;
 }
 
-
-/* ===========================
-   TITULO
-=========================== */
+.brand__logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
 
 .hero__title {
-
-    font-size: 2rem;
-    line-height: 1.1;
+    font-size: 2.8rem;
     font-weight: 700;
-
-    color: #635109;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
-    margin-bottom: 2rem;
+    color: var(--color-light); /* Texto blanco para contrastar con el verde */
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
-
-.hero_subtitle {
-
-    font-size: 1.2rem;
-    line-height: 1.5;
-
-    color: #555;
-
-    margin-bottom: 2rem;
-}
-
-.hero__title span {
-
-    color: #5b8f55;
-}
-
-
-/* ===========================
-   DESCRIPCIÓN
-=========================== */
 
 .hero__description {
-
-    max-width: 550px;
-
     font-size: 1.15rem;
-
-    color: #555;
-
-    line-height: 1.8;
-
-    margin-bottom: 2.5rem;
-}
-
-
-/* ===========================
-   BOTONES
-=========================== */
-
-.hero__buttons {
-
-    display: flex;
-
-    gap: 1rem;
-
+    color: var(--color-light);
+    opacity: 0.9; /* Un poco más suave que el título */
+    max-width: 450px;
+    line-height: 1.6;
     margin-bottom: 3rem;
 }
 
-.btn {
-
-    border: none;
-
-    cursor: pointer;
-
-    padding: 15px 30px;
-
-    border-radius: 50px;
-
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    transition: .3s;
+/* Botones en horizontal como los tienes ahora */
+.hero__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
 }
 
+.btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
 .btn-primary {
-
-    background: #5b8f55;
-    border: 2px solid #f7f8f7;
-
-    color: white;
-    
-
+    background-color: #4a5c2b; /* Un verde más oscuro para el botón principal */
+    color: var(--color-light);
+    border: none;
 }
 
 .btn-primary:hover {
-
-    background: #4d7948;
-
-    transform: translateY(-2px);
-    
+    background-color: #3b4a22;
 }
 
-
 .btn-secondary {
-
-    background: white;
-
-    color: #31563b;
-
-    border: 2px solid #5b8f55;
+    background-color: var(--color-light);
+    color: #4a5c2b;
+    border: none;
 }
 
 .btn-secondary:hover {
-
-    background: #eef7ea;
-
-    transform: translateY(-2px);
+    background-color: #f5f5f5;
 }
 
-
-/* ===========================
-   FOOTER HERO
-=========================== */
-
-.hero__footer {
-
-    display: flex;
-
-    gap: 2rem;
-
-    flex-wrap: wrap;
-
-    color: #666;
-
-    font-size: .95rem;
+.hero__link {
+    font-size: 1rem;
+    color: #3b3228; /* Color oscuro para que resalte o puedes usar var(--color-light) si prefieres blanco */
+    text-decoration: underline;
 }
 
-.hero__footer span {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: .5rem;
-}
-
-
-/* ===========================
-   COLUMNA DERECHA
-=========================== */
+/* ==========================================
+   COLUMNA DERECHA: IMAGEN CENTRADA
+========================================== */
 .welcome__image-section {
-    flex: 2;    
+    flex: 1;
+    width: 50%; /* Ocupa la otra mitad de la pantalla */
+    min-height: 100vh;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+    padding: 4rem var(--spacing-lg);
 }
-
-
-/* Imagen */
 
 .welcome__image-photo {
-
-    max-width: 100%;
-
-    border-radius: 30px;
-
+    width: 100%;
+    max-width: 550px; /* Un poco más grande para equilibrar la pantalla */
+    height: auto;
+    border-radius: 40px;
+    box-shadow: var(--shadow-large);
     object-fit: cover;
-
-    display: block;
-
-    box-shadow: 0 20px 45px rgba(0,0,0,.12);
 }
 
+    padding: 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 /* ===========================
-   TARJETA FLOTANTE
+   LOGO Y BRANDING
 =========================== */
-
-.result-card {
-
-    position: absolute;
-
-    left: -40px;
-
-    bottom: 30px;
-
-    width: 290px;
-
-    background: white;
-
-    padding: 1.5rem;
-
-    border-radius: 20px;
-
-    box-shadow: 0 20px 40px rgba(0,0,0,.15);
+.brand {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para ordenar Logo, Título y Badge verticalmente */
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
+.brand__logo {
+    width: 90%;              
+    height: 90px;             
+    margin-bottom: 2rem;      
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand__logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.hero__title h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+    margin: 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 100px;
+    background: #eef7ea; /* Color sutil de fondo */
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Título de sección (Corregida la jerarquía del JSX) */
+.brand__text {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+}
+
+.brand__text span {
+    color: var(--color-secondary);
+}
+
+/* Descripción */
+.hero__description {
+    max-width: 550px;
+    font-size: 1.1rem;
+    color: var(--color-text);
+    opacity: 0.9;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Botones */
+.hero__buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* ===========================
+   COLUMNA DERECHA (IMAGEN)
+=========================== */
+.welcome__image-section {
+    flex: 1;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Contenedor de referencia para la tarjeta flotante */
+}
+
+.welcome__image {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.welcome__image-photo {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-large);
+    object-fit: cover;
+    display: block;
+    box-shadow: var(--shadow-large);
+}
+
+/* ===========================
+   TARJETA FLOTANTE (Bien posicionada)
+=========================== */
+.result-card {
+    position: absolute;
+    left: -30px;
+    bottom: 30px;
+    width: 280px;
+    background: var(--color-surface);
+    padding: var(--spacing-md);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-large);
+    z-index: 10;
+}
 
 .result-card__label {
-
     display: inline-block;
-
-    margin-bottom: .7rem;
-
-    color: #5b8f55;
-
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-secondary);
     font-weight: 600;
-
-    font-size: .85rem;
+    font-size: 0.85rem;
 }
-
 
 .result-card h3 {
-
-    margin-bottom: 1rem;
-
-    color: #31563b;
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+    color: var(--color-text);
 }
-
 
 .result-card__value {
-
-    font-size: 2rem;
-
+    font-size: 1.5rem;
     font-weight: bold;
-
-    color: #5b8f55;
-
-    margin-bottom: 1rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
 }
-
 
 .result-card p {
-
-    color: #666;
-
-    line-height: 1.6;
-
-    font-size: .95rem;
+    color: var(--color-text);
+    opacity: 0.8;
+    line-height: 1.4;
+    font-size: 0.9rem;
 }
-
-
-
+/* Oculta selectores globales sueltos o navbars no deseados dentro de welcome */
+.welcome ~ nav, 
+header, 
+.navbar,
+body > a {
+    display: none !important;
+}
