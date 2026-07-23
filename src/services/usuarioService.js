@@ -1,26 +1,52 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/usuario";
+// Instancia centralizada para el servicio de usuarios
+const apiUsuario = axios.create({
+  baseURL: "http://127.0.0.1:8000/usuario",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-// crear un usario //
+// Crear un usuario
 export const crearUsuario = async (payload) => {
-    const res = await axios.post(API_URL + "/", payload);
-    return res.data;    
+  try {
+    const res = await apiUsuario.post("/", payload);
+    return res.data;
+  } catch (error) {
+    console.error("Error al crear el usuario:", error);
+    throw error;
+  }
 };
 
-// ver un solo usuario//
+// Ver un solo usuario
 export const obtenerUsuario = async (id) => {
-    const res = await axios.get(`${API_URL}/${id}`);
+  try {
+    const res = await apiUsuario.get(`/${id}`);
     return res.data;
+  } catch (error) {
+    console.error(`Error al obtener el usuario ${id}:`, error);
+    throw error;
+  }
 };
 
-// editar un usuario//
+// Editar un usuario
 export const actualizarUsuario = async (id, payload) => {
-    const res = await axios.put(`${API_URL}/${id}`, payload);
+  try {
+    const res = await apiUsuario.put(`/${id}`, payload);
     return res.data;
+  } catch (error) {
+    console.error(`Error al actualizar el usuario ${id}:`, error);
+    throw error;
+  }
 };
 
-// eliminar un usuario//
+// Eliminar un usuario
 export const eliminarUsuario = async (id) => {
-    await axios.delete(`${API_URL}/${id}`);
+  try {
+    await apiUsuario.delete(`/${id}`);
+  } catch (error) {
+    console.error(`Error al eliminar el usuario ${id}:`, error);
+    throw error;
+  }
 };
