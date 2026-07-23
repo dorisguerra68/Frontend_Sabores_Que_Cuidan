@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch, FaUtensils,  FaArrowLeft,  FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaUtensils, FaArrowLeft,  FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Para poder volver atrás con un botón
 import "./../styles/Index-Global.css";
 import "./../styles/RegistrarComida.css";
