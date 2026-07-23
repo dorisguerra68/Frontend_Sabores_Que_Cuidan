@@ -1,41 +1,74 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/alimento";
+// Creamos una instancia centralizada de Axios
+const apiAlimentos = axios.create({
+  baseURL: "http://127.0.0.1:8000/alimento",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-
-// veremos la lista de alimento//
+// Ver la lista de alimentos
 export const listaAlimentos = async () => {
-    const res = await axios.get(API_URL + "/");
+  try {
+    const res = await apiAlimentos.get("/");
     return res.data;
+  } catch (error) {
+    console.error("Error al listar alimentos:", error);
+    throw error;
+  }
 };
 
-// ver un solo alimento//
+// Ver un solo alimento
 export const obtenerAlimento = async (id) => {
-    const res = await axios.get(`${API_URL}/${id}`);
+  try {
+    const res = await apiAlimentos.get(`/${id}`);
     return res.data;
+  } catch (error) {
+    console.error(`Error al obtener el alimento ${id}:`, error);
+    throw error;
+  }
 };
 
-// crear un alimento//
+// Crear un alimento
 export const crearAlimento = async (payload) => {
-    const res = await axios.post(API_URL + "/", payload);
+  try {
+    const res = await apiAlimentos.post("/", payload);
     return res.data;
+  } catch (error) {
+    console.error("Error al crear alimento:", error);
+    throw error;
+  }
 };
 
-// editar un alimento//
+// Editar un alimento
 export const actualizarAlimento = async (id, payload) => {
-    const res = await axios.put(`${API_URL}/${id}`, payload);
+  try {
+    const res = await apiAlimentos.put(`/${id}`, payload);
     return res.data;
+  } catch (error) {
+    console.error(`Error al actualizar el alimento ${id}:`, error);
+    throw error;
+  }
 };
 
-// eliminar un alimento//
+// Eliminar un alimento
 export const eliminarAlimento = async (id) => {
-  await axios.delete(`${API_URL}/${id}`);
+  try {
+    await apiAlimentos.delete(`/${id}`);
+  } catch (error) {
+    console.error(`Error al eliminar el alimento ${id}:`, error);
+    throw error;
+  }
 };
 
-// buscar un alimento//
+// Buscar un alimento
 export const buscarAlimento = async (termino) => {
-    const res = await axios.get(API_URL + "/buscar/" + termino);
+  try {
+    const res = await apiAlimentos.get(`/buscar/${termino}`);
     return res.data;
+  } catch (error) {
+    console.error(`Error al buscar alimento con término "${termino}":`, error);
+    throw error;
+  }
 };
-
-

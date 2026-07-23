@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch, FaUtensils, FaArrowLeft } from "react-icons/fa";
+import { FaSearch, FaUtensils,  FaArrowLeft,  FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Para poder volver atrás con un botón
 import "./../styles/Index-Global.css";
 import "./../styles/RegistrarComida.css";
@@ -74,6 +74,18 @@ export default function RegistrarComida() {
             Calcular impacto glucémico de la comida
           </button>
         </div>
+
+        {/* 🚀 BOTONES DE NAVEGACIÓN HÍBRIDOS */}
+        <nav className="dashboard__navigation-buttons">
+          <Link to="/dashboard" className="btn-nav btn-nav--secondary">
+            <FaArrowLeft /> Volver al Dashboard
+          </Link>
+          <Link to="/diario" className="btn-nav btn-nav--primary">
+            Ir a Mi Diario <FaArrowRight />
+          </Link>
+        </nav>  
+
+
 
       </div>
     </main>

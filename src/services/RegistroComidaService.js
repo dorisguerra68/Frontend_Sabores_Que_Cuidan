@@ -1,42 +1,77 @@
 import axios from "axios";
 
-//nombre exacto en el router de registro de comida como está escrito el router de la API en prefix//
-const API_URL = "http://127.0.0.1:8000/registro_comida";
+// Instancia centralizada para el registro de comidas
+const apiRegistroComida = axios.create({
+  baseURL: "http://127.0.0.1:8000/registro_comida",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-// veremos la listas de los registros de comida//
+// Ver la lista de los registros de comida
 export const listaRegistroComida = async () => {
-    const res = await axios.get(API_URL + "/");
+  try {
+    const res = await apiRegistroComida.get("/");
     return res.data;
+  } catch (error) {
+    console.error("Error al listar registros de comida:", error);
+    throw error;
+  }
 };
 
-// ver un solo registro de comida//
+// Ver un solo registro de comida
 export const obtenerRegistroComida = async (id) => {
-    const res = await axios.get(`${API_URL}/${id}`);
+  try {
+    const res = await apiRegistroComida.get(`/${id}`);
     return res.data;
+  } catch (error) {
+    console.error(`Error al obtener el registro de comida ${id}:`, error);
+    throw error;
+  }
 };
 
-// crear un registro de comida//
+// Crear un registro de comida
 export const crearRegistroComida = async (payload) => {
-    const res = await axios.post(API_URL + "/", payload);
+  try {
+    const res = await apiRegistroComida.post("/", payload);
     return res.data;
-}
+  } catch (error) {
+    console.error("Error al crear registro de comida:", error);
+    throw error;
+  }
+};
 
-// editar un registro de comida//
+// Editar un registro de comida
 export const actualizarRegistroComida = async (id, payload) => {
-    const res = await axios.put(`${API_URL}/${id}`, payload);
+  try {
+    const res = await apiRegistroComida.put(`/${id}`, payload);
     return res.data;
+  } catch (error) {
+    console.error(`Error al actualizar el registro de comida ${id}:`, error);
+    throw error;
+  }
 };
 
-// eliminar un registro de comida//
+// Eliminar un registro de comida
 export const eliminarRegistroComida = async (id) => {
-    await axios.delete(`${API_URL}/${id}`);
+  try {
+    await apiRegistroComida.delete(`/${id}`);
+  } catch (error) {
+    console.error(`Error al eliminar el registro de comida ${id}:`, error);
+    throw error;
+  }
 };
 
-/* buscar un registro de comida por fecha
+// Buscar un registro de comida por fecha (Descoméntalo si tu backend ya acepta la ruta)
+/*
 export const buscarRegistroComida = async (datetime) => {   
-    const res = await axios.get(API_URL + "/buscar/" + datetime);
+  try {
+    // encodeURIComponent protege caracteres especiales como espacios o zonas horarias en la URL
+    const res = await apiRegistroComida.get(`/buscar/${encodeURIComponent(datetime)}`);
     return res.data;
-}*/
-
-
-
+  } catch (error) {
+    console.error(`Error al buscar registro de comida para la fecha ${datetime}:`, error);
+    throw error;
+  }
+};
+*/

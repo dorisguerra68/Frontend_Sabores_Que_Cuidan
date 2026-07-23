@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaArrowLeft, FaCalendarAlt } from "react-icons/fa";
+import { FaArrowLeft, FaHome, FaCalendarAlt } from "react-icons/fa";
 import "./../styles/Index-Global.css";
 import "./../styles/Responsive-movil.css";
 import "./../styles/Responsive-ordenador.css";
@@ -30,6 +30,15 @@ export default function Diario() {
             </Link>
           </div>
         </div>
+        {/* 🚀 BOTONES DE NAVEGACIÓN HÍBRIDOS */}
+        <nav className="dashboard__navigation-buttons">
+          <Link to="/registrar-comida" className="btn-nav btn-nav--secondary">
+            <FaArrowLeft /> Volver a Registrar
+          </Link>
+          <Link to="/dashboard" className="btn-nav btn-nav--primary">
+            <FaHome /> Ir al Panel Principal
+          </Link>
+        </nav>
 
       </div>
     </main>

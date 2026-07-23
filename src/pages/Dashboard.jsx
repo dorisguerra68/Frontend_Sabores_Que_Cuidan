@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaPlusCircle, FaBookOpen, FaSignOutAlt } from "react-icons/fa";
+import { FaPlusCircle, FaBookOpen, FaSignOutAlt, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import Card from "./../components/ui/Card"; 
 import "./../styles/Dashboard.css";
@@ -8,7 +8,7 @@ import "./../styles/Dashboard.css";
 export default function Dashboard() {
   const [nombreUsuario] = useState("María");
 
-  // 💡 1. LÓGICA DE LA FECHA FORMATEADA EN ESPAÑOL (Ej: Miércoles, 22 de julio de 2026)
+  // LÓGICA DE LA FECHA FORMATEADA EN ESPAÑOL
   const fechaActual = new Date().toLocaleDateString("es-ES", {
     weekday: "long",
     day: "numeric",
@@ -16,7 +16,7 @@ export default function Dashboard() {
     year: "numeric"
   });
 
-  // Tu lógica del saludo se queda exactamente igual
+  // Lógica del saludo según la hora
   const hora = new Date().getHours();
   let saludo;
   if (hora >= 6 && hora < 12) saludo = "Buenos días";
@@ -27,8 +27,8 @@ export default function Dashboard() {
     <main className="dashboard-layout">
       <div className="dashboard-container">
         
+        {/* Cabecera interna con saludo y fecha */}
         <header className="dashboard__header">
-          {/* 💡 2. AÑADIMOS LA FECHA EN LA PARTE SUPERIOR ANTES DEL SALUDO */}
           <span className="dashboard__date">{fechaActual}</span>
 
           <div className="dashboard__header-top">
@@ -44,7 +44,7 @@ export default function Dashboard() {
           </p>
         </header>
 
-        {/* El resto del código de section con tus Cards se queda EXACTAMENTE IGUAL */}
+        {/* Grid de Tarjetas principales */}
         <section className="dashboard__grid">
           <Link to="/registrar-comida" className="dashboard__card-link">
             <Card
@@ -68,6 +68,16 @@ export default function Dashboard() {
             </Card>
           </Link>
         </section>
+
+        {/* 🚀 BOTONES RADICALES DE NAVEGACIÓN (Estrategia de Entrega Rápida) */}
+        <nav className="dashboard__navigation-buttons">
+          <Link to="/" className="btn-nav btn-nav--secondary">
+            <FaArrowLeft /> Volver al Inicio
+          </Link>
+          <Link to="/registrar-comida" className="btn-nav btn-nav--primary">
+            Avanzar <FaArrowRight />
+          </Link>
+        </nav>
 
       </div>
     </main>

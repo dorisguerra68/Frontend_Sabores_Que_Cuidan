@@ -5,63 +5,110 @@
 
 @media (max-width: 768px) {
   
-  /* 1. Pasamos el contenedor a una sola columna vertical */
+   /* 1. INVERTIMOS EL ORDEN: La imagen sube y el bloque verde baja */
   .welcome__container {
-    flex-direction: column;
+    display: flex;
+    flex-direction: column-reverse; /* ¡Crucial! Invierte las dos mitades */
     text-align: center;
-    gap: 3rem;
-    padding: var(--spacing-lg) var(--spacing-md);
-    min-height: auto;
+    gap: 2rem;
+    padding: 1.5rem; /* Le damos un respiro general para que se vea flotante */
+    background-color: var(--color-background); /* Fondo crema general */
   }
 
-  /* 2. Alineación centrada para textos y elementos */
+   /* 2. EFECTO FLOTANTE DE LA CARD VERDE */
   .welcome__content {
+    width: 100% !important;
     max-width: 100%;
+    min-height: auto; /* Ya no necesita medir 100vh porque ahora es una tarjeta flotante */
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 3rem 1.5rem;
+    box-sizing: border-box;
+    
+    /* Esquinas redondeadas y sombra flotante premium */
+    border-radius: 24px; 
+    box-shadow: 0 10px 30px rgba(74, 92, 43, 0.15); /* Sombra suave usando un tono de tu verde */
+  }
+    /* 3. SOMBRA Y ACABADO EN BOTONES */
+  .btn {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    
+    /* Sombra para los botones */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .brand {
-    align-items: center; /* Centra el logo y badge en móviles */
-    margin-bottom: var(--spacing-md);
+  /* Efecto sutil al presionar el botón en móvil */
+  .btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .brand__text {
-    font-size: 1.8rem; /* Reducimos tipografía para pantallas pequeñas */
+  /* Control de orden con Flexbox: Forzamos el flujo visual correcto */
+  .brand__logo {
+    order: 1;                 /* Primero el Logo arriba */
+    width: 140px;             /* Ajustamos tamaño para móvil */
+    margin-bottom: 1.5rem;
   }
 
-  /* 3. Botones uno debajo de otro para mejor área de clic */
+  .hero__title {
+    order: 2;                 /* Segundo el Título */
+    font-size: 2rem;          /* Reducimos el tamaño para que no se corte */
+    margin-bottom: 1rem;
+  }
+
+  .hero__description {
+    order: 3;                 /* Tercero el Subtítulo */
+    font-size: 1.05rem;
+    text-align: justify;      /* Justifica el cuerpo del texto */
+    text-align-last: center;  /* Centra la última línea para estética Senior */
+    max-width: 90%;
+    margin-bottom: 2.5rem;
+  }
+
   .hero__buttons {
-    flex-direction: column;
+    order: 4;                 /* Al final los botones */
+    flex-direction: row;      /* Los mantenemos de lado a lado si caben, o cambia a column si prefieres vertical */
+    gap: 1rem;
     width: 100%;
     max-width: 300px;
-    gap: var(--spacing-sm);
   }
 
   .btn {
-    width: 100%; /* Botones de ancho completo en móvil */
+    flex: 1;                  /* Hace que ambos botones midan exactamente lo mismo */
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
   }
 
-  /* 4. Ajustes en la sección de la imagen */
+    /* Aseguramos que la sección de la imagen colabore en el flujo */
   .welcome__image-section {
     width: 100%;
+    display: flex;
     justify-content: center;
-    margin-top: var(--spacing-md);
+    margin-top: 0;
+    margin-bottom: 1rem; /* Despeja el espacio con la card de abajo */
   }
 
-  .welcome__image {
-    max-width: 350px; /* Evita que la foto sea gigante en móviles */
+ 
+   .welcome__image-photo {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 24px; /* Homologamos las esquinas con la card verde */
   }
 
-  /* 5. Tarjeta Flotante Adaptada (Evita que se salga de la pantalla) */
+
+  /* 5. Tarjeta Flotante Adaptada */
   .result-card {
-    position: relative; /* Cambia de absoluto a relativo para fluir en vertical */
+    position: relative; 
     left: 0;
     bottom: 0;
     width: 100%;
     max-width: 320px;
-    margin: var(--spacing-md) auto 0 auto; /* Se posiciona de forma segura bajo la imagen */
+    margin: var(--spacing-md) auto 0 auto; 
     box-shadow: var(--shadow);
   }
 }
