@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Instancia centralizada para el registro de comidas
 const apiRegistroComida = axios.create({
-  baseURL: "http://127.0.0.1:8000/registro_comida",
+  baseURL: "http://localhost:8000", 
   headers: {
     "Content-Type": "application/json",
   },

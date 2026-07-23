@@ -2,11 +2,12 @@ import axios from "axios";
 
 // Creamos una instancia centralizada de Axios
 const apiAlimentos = axios.create({
-  baseURL: "http://127.0.0.1:8000/alimento",
+  baseURL: "http://localhost:8000", 
   headers: {
     "Content-Type": "application/json",
   },
 });
+
 
 // Ver la lista de alimentos
 export const listaAlimentos = async () => {
@@ -63,12 +64,18 @@ export const eliminarAlimento = async (id) => {
 };
 
 // Buscar un alimento
+// Buscar un alimento (Alineado con tu Swagger real)
 export const buscarAlimento = async (termino) => {
   try {
-    const res = await apiAlimentos.get(`/buscar/${termino}`);
+    // Apuntamos directamente a la ruta raíz que viste en Swagger: /alimento/
+    // Y le pasamos el término de búsqueda de forma asíncrona como un parámetro limpio (?buscar=pan)
+    const res = await apiAlimentos.get("/alimento/", {
+      params: { buscar: termino } 
+    });
     return res.data;
   } catch (error) {
     console.error(`Error al buscar alimento con término "${termino}":`, error);
     throw error;
   }
 };
+
