@@ -2,16 +2,16 @@ import axios from "axios";
 
 // Instancia centralizada para el registro de comidas
 const apiRegistroComida = axios.create({
-  baseURL: "http://127.0.0.1:8000/registro_comida",
+  baseURL: "http://localhost:8000", 
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Ver la lista de los registros de comida
+// Ver la lista de los registros de comida (Apunta a: http://localhost:8000/registro_comida/)
 export const listaRegistroComida = async () => {
   try {
-    const res = await apiRegistroComida.get("/");
+    const res = await apiRegistroComida.get("/registro_comida/");
     return res.data;
   } catch (error) {
     console.error("Error al listar registros de comida:", error);
@@ -19,10 +19,10 @@ export const listaRegistroComida = async () => {
   }
 };
 
-// Ver un solo registro de comida
+// Ver un solo registro de comida (Apunta a: http://localhost:8000/registro_comida/5)
 export const obtenerRegistroComida = async (id) => {
   try {
-    const res = await apiRegistroComida.get(`/${id}`);
+    const res = await apiRegistroComida.get(`/registro_comida/${id}`);
     return res.data;
   } catch (error) {
     console.error(`Error al obtener el registro de comida ${id}:`, error);
@@ -30,10 +30,11 @@ export const obtenerRegistroComida = async (id) => {
   }
 };
 
-// Crear un registro de comida
+// 🌟 CORREGIDO: Crear un registro de comida (Apunta exactamente a: http://localhost:8000/registro_comida/)
 export const crearRegistroComida = async (payload) => {
   try {
-    const res = await apiRegistroComida.post("/", payload);
+    // Agregamos el prefijo con la barra al final como exige tu Swagger
+    const res = await apiRegistroComida.post("/registro_comida/", payload);
     return res.data;
   } catch (error) {
     console.error("Error al crear registro de comida:", error);
@@ -41,10 +42,10 @@ export const crearRegistroComida = async (payload) => {
   }
 };
 
-// Editar un registro de comida
+// Editar un registro de comida (Apunta a: http://localhost:8000/registro_comida/5)
 export const actualizarRegistroComida = async (id, payload) => {
   try {
-    const res = await apiRegistroComida.put(`/${id}`, payload);
+    const res = await apiRegistroComida.put(`/registro_comida/${id}`, payload);
     return res.data;
   } catch (error) {
     console.error(`Error al actualizar el registro de comida ${id}:`, error);
@@ -52,10 +53,10 @@ export const actualizarRegistroComida = async (id, payload) => {
   }
 };
 
-// Eliminar un registro de comida
+// Eliminar un registro de comida (Apunta a: http://localhost:8000/registro_comida/5)
 export const eliminarRegistroComida = async (id) => {
   try {
-    await apiRegistroComida.delete(`/${id}`);
+    await apiRegistroComida.delete(`/registro_comida/${id}`);
   } catch (error) {
     console.error(`Error al eliminar el registro de comida ${id}:`, error);
     throw error;
