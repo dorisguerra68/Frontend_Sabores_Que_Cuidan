@@ -132,7 +132,7 @@
     font-size: 1rem;
 }
 
-//* Contenedor de botones de navegación inferiores */
+/* Contenedor de botones de navegación inferiores */
 .dashboard__navigation-buttons {
     display: flex;
     justify-content: space-between;
@@ -238,10 +238,5 @@
     .btn-nav {
         width: 100%; /* Ocupan todo el ancho en el celular */
     }
-
-
-
-
-
 
 }
