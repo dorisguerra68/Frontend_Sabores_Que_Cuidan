@@ -3,10 +3,10 @@ import { useState, useEffect } from "react"; // 🌟 Importamos useEffect desde 
 import { FaSearch, FaUtensils, FaArrowLeft, FaArrowRight, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom"; 
 import { crearRegistroComida, listaRegistroComida } from "./../services/RegistroComidaService"; 
-import "./../styles/Index-Global.css";
+import "./../styles/index-global.css";
 import "./../styles/RegistrarComida.css";
-import "./../styles/Responsive-movil.css";
-import "./../styles/Responsive-ordenador.css";
+import "./../styles/responsive-ordenador.css";
+import "./../styles/responsive-movil.css";
 
 export default function RegistrarComida() {
   const comidas = ["Desayuno", "Media Mañana", "Comida", "Merienda", "Cena"];

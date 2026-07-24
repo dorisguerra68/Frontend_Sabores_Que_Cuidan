@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaHome, FaCalendarAlt } from "react-icons/fa";
-import "./../styles/Index-Global.css";
-import "./../styles/Responsive-movil.css";
-import "./../styles/Responsive-ordenador.css";
+import "./../styles/index-global.css";
+import "./../styles/responsive-ordenador.css";
+import "./../styles/responsive-movil.css";
 import "./../styles/Diary.css"
 
 export default function Diario() {
