@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
-import './styles/Index-Global.css';
+import './styles/index-global.css';
 import './styles/Components.css';
 import './styles/responsive-ordenador.css';
 import './styles/responsive-movil.css';
