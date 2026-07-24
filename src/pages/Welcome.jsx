@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"; // 💡 Añadido el import necesario para los enlaces
-import "./../styles/Index-Global.css";
+import "./../styles/index-global.css";
 import "./../styles/Welcome.css";
-import "./../styles/Responsive-movil.css";
-import "./../styles/Responsive-ordenador.css";
+import "./../styles/responsive-ordenador.css";
+import "./../styles/responsive-movil.css";
 import comer1 from "./../assets/images/comer1.png";
 import logo2 from "./../assets/images/logo2.png";
 
