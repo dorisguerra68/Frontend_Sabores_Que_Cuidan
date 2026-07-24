@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 
 import './styles/Index-Global.css';
 import './styles/Components.css';
-import './styles/Responsive-ordenador.css';
+import './styles/responsive-ordenador.css';
 import './styles/responsive-movil.css';
 import './styles/Variables.css';
 import './styles/RegistrarComida.css';
