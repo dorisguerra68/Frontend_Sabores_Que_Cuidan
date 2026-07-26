@@ -144,6 +144,165 @@
     margin-top: 1rem;
 }
 
+/* ==========================================================================
+   SECCIÓN DE ALIMENTOS AÑADIDOS CON INDICADORES GLUCÉMICOS
+   ========================================================================== */
+
+.comidas-lista {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
+}
+
+.comida-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #eef2f5;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comida-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+}
+
+.comida-item__izq {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 🌟 Círculo base indicador */
+/* 🌟 Círculo base con efecto esfera 3D y brillo superior */
+.indicador-circulo {
+  width: 16px;          /* Lo ampliamos un poquito para que luzca el efecto */
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  
+  /* Sombra proyectada suave hacia abajo para dar efecto de flotado */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 
+              inset 0 -3px 6px rgba(0, 0, 0, 0.2); 
+}
+
+/* 🌟 Brillo blanco superior (simula el reflejo de la luz de tu imagen) */
+.indicador-circulo::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 10px;
+  height: 5px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+  border-radius: 50%;
+}
+
+/* 🟢 Estados de color según el semáforo nutricional */
+.circulo-bajo {
+  
+  background: radial-gradient(circle at 35% 35%, #5ee687 0%, #2ecc71 50%, #229954 100%);
+}
+
+.circulo-medio {
+  background-color: #e67e22; /* Naranja intermedio */
+    background: radial-gradient(circle at 35% 35%, #ffb74d 0%, #e67e22 50%, #b35d10 100%);
+}
+
+.circulo-alto {
+  background: radial-gradient(circle at 35% 35%, #ff7675 0%, #e74c3c 50%, #bc2e20 100%);
+}
+
+/* Textos informativos ordenados */
+.comida-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.comida-info__nombre {
+  font-size: 15px;
+  color: #2c3e50;
+}
+
+.comida-info__subtitulo {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+/* Botón estilizado para el borrado */
+.btn-eliminar-comida {
+  background-color: #fdf2f2;
+  color: #e74c3c;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar-comida:hover {
+  background-color: #e74c3c;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN INFERIOR (ESTRATEGIA MVP)
+   ========================================================================== */
+
+.dashboard__navigation-buttons {
+  display: flex;
+  justify-content: space-between; /* Empuja un botón a cada extremo */
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Adapta este ancho al tamaño máximo de tu contenedor */
+  margin: 30px auto 0 auto; /* Separa los botones de la caja blanca */
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Botón Izquierdo: Volver al Inicio (Crema/Gris suave) */
+.btn-nav--secondary {
+  background-color: #f5eedc; /* Color crema de tu diseño */
+  color: #3e2723;
+}
+
+.btn-nav--secondary:hover {
+  background-color: #ede3cc;
+}
+
+/* Botón Derecho: Avanzar (Verde Nutricional) */
+.btn-nav--primary {
+  background-color: #657e3c; /* Verde oliva de tu marca */
+  color: #ffffff;
+}
+
+.btn-nav--primary:hover {
+  background-color: #536930;
+}
+
 
 
 @media (max-width: 768px) {

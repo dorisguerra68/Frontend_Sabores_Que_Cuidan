@@ -112,3 +112,47 @@
     box-shadow: var(--shadow);
   }
 }
+  /* ==========================================================================
+     VISTA REGISTRAR COMIDA – ADAPTACIÓN PARA MÓVILES
+     ========================================================================== */
+
+  .comidas-lista {
+    margin-top: 12px;
+  }
+
+  .comida-item {
+    padding: 10px 12px; /* Reducimos el acolchado para aprovechar la pantalla */
+    margin-bottom: 6px;
+    border-radius: 10px; /* Esquinas ligeramente más suaves en móvil */
+  }
+
+  .comida-item__izq {
+    gap: 10px; /* Menor espacio entre el círculo y los textos */
+  }
+
+  /* Hacemos los textos un poco más compactos para evitar saltos de línea molestos */
+  .comida-info {
+    gap: 1px;
+  }
+
+  .comida-info__nombre {
+    font-size: 14px; /* Tamaño optimizado para smartphones */
+    line-height: 1.3;
+  }
+
+  .comida-info__subtitulo {
+    font-size: 12px;
+  }
+
+  /* Ampliamos ligeramente la zona de pulsación del botón de borrado */
+  .btn-eliminar-comida {
+    padding: 10px 12px;
+    font-size: 15px; /* Icono un poco más grande para facilitar el toque táctil */
+  }
+
+  /* Efecto activo instantáneo al pulsar con el dedo en pantallas táctiles */
+  .btn-eliminar-comida:active {
+    background-color: #e74c3c;
+    color: #ffffff;
+    transform: scale(0.95);
+  }

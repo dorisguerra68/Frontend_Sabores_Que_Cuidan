@@ -1,0 +1,105 @@
+/* Contenedor principal de la tarjeta de impacto (Tono crema de tu diseño) */
+.impacto-glucemico-card {
+  margin-top: 25px;
+  background-color: #f4ebd9;
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px solid #e1d3b7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+}
+
+/* Subtítulo superior informativo en mayúsculas */
+.impacto-glucemico-card__subtitle {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #615744;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* El Badge contenedor dinámico (Icono + Texto) */
+.impacto-glucemico-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 24px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Bloque de texto alineado a la izquierda dentro del Badge */
+.impacto-glucemico-badge__text-group {
+  text-align: left;
+}
+
+/* Etiqueta superior diminuta dentro del Badge */
+.impacto-glucemico-badge__label {
+  font-size: 10px;
+  display: block;
+  opacity: 0.8;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Resultado en texto grande del nivel (Bajo, Moderado, Alto) */
+.impacto-glucemico-badge__result {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Párrafo descriptivo o consejo nutricional inferior */
+.impacto-glucemico-card__description {
+  font-size: 13.5px;
+  color: #555;
+  margin: 6px 0 0 0;
+  line-height: 1.45;
+}
+
+/* Iconos de react-icons customizados por CSS */
+.impacto-glucemico-icon {
+  font-size: 22px;
+}
+
+/* =====================================================================
+   ESTADOS DINÁMICOS POR COLORES (SEGÚN EL IMPACTO DETERMINADO)
+   ===================================================================== */
+
+/* Estado Bajo: Tonos verdes */
+.impacto-glucemico-badge--bajo {
+  background-color: #e2f0d9;
+  border: 1px solid #b5d5a6;
+  color: #2c4a1e;
+}
+.impacto-glucemico-icon--bajo {
+  color: #38b000;
+}
+
+/* Estado Medio: Tonos amarillos/mostaza */
+.impacto-glucemico-badge--medio {
+  background-color: #fff2cc;
+  border: 1px solid #f1c232;
+  color: #7f6000;
+}
+.impacto-glucemico-icon--medio {
+  color: #f1c232;
+}
+
+/* Estado Alto: Tonos rojos/naranjas */
+.impacto-glucemico-badge--alto {
+  background-color: #fce5cd;
+  border: 1px solid #e06666;
+  color: #660000;
+}
+.impacto-glucemico-icon--alto {
+  color: #e06666;
+}
+
