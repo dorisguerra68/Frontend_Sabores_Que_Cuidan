@@ -43,13 +43,14 @@ export default function RegistrarComida() {
         registrosBackend.forEach((reg) => {
           const fechaRegistroString = reg.fecha.split('T')[0];
 
-                    if (fechaRegistroString === hoyString && mapaTemporal[reg.hora_comida]) {
+          // 🌟 FILTRO REGLA DE ORO: Extraemos el impacto que calculó el Backend de forma persistente
+          if (fechaRegistroString === hoyString && mapaTemporal[reg.hora_comida]) {
             mapaTemporal[reg.hora_comida].push({
               id: reg.id_alimento,
               nombre: reg.alimento?.nombre || "Alimento", 
               gramosId: reg.id_rgtcomida, 
               racion: Number(reg.racion),
-              impacto: reg.impacto_glucemico
+              impacto: reg.impacto_glucemico // 🌟 LEÍDO DIRECTAMENTE DESDE TU TABLA POSTGRESQL
             });
           }
         });
@@ -63,6 +64,7 @@ export default function RegistrarComida() {
 
     recuperarRegistrosFormateados();
   }, []); 
+
 
   const handleInputChange = (e) => {
     const valor = e.target.value;
@@ -78,25 +80,28 @@ export default function RegistrarComida() {
     const gramos = prompt(`¿Cuántos gramos de ${alimento.nombre} consumiste?`, "100");
     if (!gramos || isNaN(gramos)) return;
 
-        const fechaISO = new Date().toISOString(); 
-    const fechaParaPython = fechaISO.split('.')[0];
+    // 🌟 CORRECCIÓN FECHA: Formateamos la fecha eliminando milisegundos y la Z de forma definitiva para Pydantic/SQLAlchemy
+    const fechaISO = new Date().toISOString(); 
+    const fechaParaPython = fechaISO.split('.')[0]; // Entrega "YYYY-MM-DDTHH:MM:SS"
 
-        let horaComidaFormateada = pestañaActiva.charAt(0).toUpperCase() + pestañaActiva.slice(1).toLowerCase();
+    // 🌟 CORRECCIÓN ENUM: Forzamos el texto exacto que pide tu modelo de base de datos en Python
+    let horaComidaFormateada = pestañaActiva.charAt(0).toUpperCase() + pestañaActiva.slice(1).toLowerCase();
     if (horaComidaFormateada === "Media mañana") {
       horaComidaFormateada = "Media Mañana";
     }
 
     const nuevoRegistroPayload = {
       id_alimento: Number(alimento.id_alimento || alimento.id), 
-      id_usuario: 1,
+      id_usuario: 1, // ID fijo de usuario para tu MVP
       racion: Number(gramos),
-      hora_comida: horaComidaFormateada,
+      hora_comida: horaComidaFormateada, // Envía "Desayuno", "Media Mañana", etc.
       fecha: fechaParaPython,      
-      impacto_glucemico: "Bajo"
+      impacto_glucemico: "Bajo" // Campo obligatorio del esquema de validación
     };
 
     try {
-            const respuestaApi = await crearRegistroComida(nuevoRegistroPayload);
+      // 🌟 CAPTURAMOS LA RESPUESTA: Almacenamos el registro devuelto por la API de FastAPI
+      const respuestaApi = await crearRegistroComida(nuevoRegistroPayload);
 
       setAlimentosAñadidos((prev) => ({
         ...prev,
@@ -105,9 +110,9 @@ export default function RegistrarComida() {
           { 
             id: alimento.id_alimento || alimento.id,
             nombre: alimento.nombre, 
-            gramosId: respuestaApi?.id_rgtcomida || Date.now(),
+            gramosId: respuestaApi?.id_rgtcomida || Date.now(), // Usamos el ID real de la base de datos
             racion: Number(gramos),
-            impacto: respuestaApi?.impacto_glucemico || "Bajo"
+            impacto: respuestaApi?.impacto_glucemico || "Bajo" // 🌟 PRESERVADO EN EL ESTADO EN TIEMPO REAL
           }
         ]
       }));
@@ -208,15 +213,15 @@ export default function RegistrarComida() {
               ) : (
                 <ul className="comidas-lista">
                   {alimentosAñadidos[pestañaActiva].map((alimento) => {
-                                        let claseColor = "circulo-bajo"; 
+                    let claseColor = "circulo-bajo"; 
                     if (alimento.impacto === "Medio") claseColor = "circulo-medio"; 
                     if (alimento.impacto === "Alto") claseColor = "circulo-alto";   
 
                     return (
                       <li key={alimento.gramosId} className="comida-item">
-<span>{alimento.nombre} ({alimento.racion}g) - <span className={claseColor}>{alimento.impacto}</span></span>
+                        <span>{alimento.nombre} ({alimento.racion}g) - <span className={claseColor}>{alimento.impacto}</span></span>
                         
-                                                 <button 
+                        <button 
                           onClick={() => eliminarAlimento(alimento.gramosId)} 
                           className="btn-eliminar-comida"
                           title="Eliminar alimento"
