@@ -1,69 +1,333 @@
 /* ==========================================
-   🌿 SABORES QUE CUIDAN – Diario.css
-========================================== */
+   SABORES QUE CUIDAN - DIARIO (ORDENADOR)
+   ========================================== */
 
-.diario-layout {
-    width: 100%;
-    min-height: 100vh;
-    background-color: var(--color-background);
-    padding: var(--spacing-xl) var(--spacing-lg);
+.diary-container-mvp {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Encabezado */
+.diary-header {
+  margin-bottom: 25px;
+  border-bottom: 2px solid #f4f6f8;
+  padding-bottom: 15px;
+}
+
+.diary-header .current-month {
+  font-size: 0.85rem;
+  color: #8c9ba5;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.diary-header .main-title {
+  font-size: 2rem;
+  color: #1a2b32;
+  margin: 5px 0 0 0;
+  font-weight: 600;
+}
+
+/* Selector de Calendario Semanal */
+.week-selector {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.day-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.day-card:hover {
+  background-color: #edf2f7;
+  transform: translateY(-2px);
+}
+
+.day-card.active {
+  background-color: #319795;
+  border-color: #319795;
+  color: #ffffff;
+}
+
+.day-card .day-letter {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #718096;
+}
+
+.day-card.active .day-letter {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.day-card .day-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Pestañas de Comidas */
+.meal-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  background-color: #f1f5f9;
+  padding: 6px;
+  border-radius: 10px;
+}
+
+.meal-tab {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  border: none;
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.meal-tab:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.meal-tab.active {
+  background-color: #ffffff;
+  color: #2d3748;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.meal-count {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.meal-tab.active .meal-count {
+  background-color: #319795;
+  color: #ffffff;
+}
+
+/* Buscador */
+.search-bar-container {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0 15px;
+  transition: border-color 0.2s ease;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #319795;
+  background-color: #ffffff;
+}
+
+.search-icon {
+  font-size: 1.1rem;
+  margin-right: 10px;
+  color: #a0aec0;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 14px 0;
+  font-size: 1rem;
+  color: #2d3748;
+  outline: none;
+}
+
+/* Desplegable de Resultados API */
+.search-results-dropdown {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: -15px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item:hover {
+  background-color: #f7fafc;
+}
+
+.result-item span {
+  font-size: 0.95rem;
+  color: #2d3748;
+}
+
+.btn-add-inline {
+  background-color: #e6fffa;
+  border: 1px solid #b2f5ea;
+  color: #234e52;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.btn-add-inline:hover {
+  background-color: #319795;
+  border-color: #319795;
+  color: #ffffff;
+}
+
+/* Secciones de Contenido Inferior */
+.added-foods-section {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.section-header h3 {
+  font-size: 0.9rem;
+  color: #4a5568;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* ==========================================
+   SABORES QUE CUIDAN - DIARIO (MÓVIL)
+   ========================================== */
+
+@media (max-width: 768px) {
+  .diary-container-mvp {
+    margin: 0;
+    padding: 15px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .diary-header .main-title {
+    font-size: 1.6rem;
+  }
+
+  /* Carrusel de días horizontal */
+  .week-selector {
     display: flex;
-    justify-content: center;
-}
+    overflow-x: auto;
+    gap: 8px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
 
-.diario-container {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+  .day-card {
+    flex: 0 0 55px;
+    scroll-snap-align: start;
+    padding: 10px 0;
+  }
 
-.diario__title {
-    font-size: 2.5rem;
-    color: var(--color-text);
-    font-weight: 700;
-}
-
-.diario__subtitle {
+  .day-card .day-number {
     font-size: 1.1rem;
-    color: var(--color-text);
-    opacity: 0.8;
-}
+  }
 
-.diario__content-box {
-    background-color: var(--color-surface);
-    border-radius: 20px;
-    padding: 4rem 2rem;
-    box-shadow: var(--shadow);
-}
-
-.diario__placeholder {
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
+  /* Carrusel de pestañas de comidas */
+  .meal-tabs {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 4px;
+    background-color: #f1f5f9;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .meal-tab {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .meal-count {
+    padding: 1px 5px;
+    font-size: 0.7rem;
+  }
+
+  /* Adaptación de caja de búsqueda */
+  .search-input {
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+
+  /* Resultados API adaptados a pantallas táctiles */
+  .result-item {
+    padding: 14px 15px;
+  }
+
+  .btn-add-inline {
+    width: 36px;
+    height: 36px;
+  }
+
+  .added-foods-section {
+    padding: 15px;
+  }
 }
 
-.placeholder-icon {
-    font-size: 3.5rem;
-    color: var(--color-primary);
-    opacity: 0.3;
-    margin-bottom: 1rem;
-}
-
-.diario__placeholder h3 {
-    font-size: 1.5rem;
-    color: var(--color-text);
-}
-
-.diario__placeholder p {
-    font-size: 1rem;
-    color: var(--color-text);
-    opacity: 0.7;
-    line-height: 1.6;
-}
 

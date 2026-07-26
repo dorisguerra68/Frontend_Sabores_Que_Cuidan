@@ -6,7 +6,7 @@ import RegisterLayout from "./layouts/RegisterLayout"; // Tu layout reutilizable
 // 💡 Importamos tus páginas reales existentes
 import Dashboard from "./pages/Dashboard";
 import RegistrarComida from "./pages/RegistrarComida";
-import Diary from "./pages/Diary"; // Tu archivo del Diario
+import {Diary  } from "./pages/Diary"; // Tu archivo del Diario
 
 export default function App() {
   return (
