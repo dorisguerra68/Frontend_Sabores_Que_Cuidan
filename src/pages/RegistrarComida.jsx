@@ -1,8 +1,10 @@
 import { useAlimentos } from "./../hooks/useAlimento"; 
-import { useState, useEffect } from "react"; // 🌟 Importamos useEffect desde React
-import { FaSearch, FaUtensils, FaArrowLeft, FaArrowRight, FaPlus, FaTrash } from "react-icons/fa";
+import { useState, useEffect } from "react"; 
+import { FaSearch, FaUtensils, FaArrowLeft, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom"; 
 import { crearRegistroComida, listaRegistroComida } from "./../services/RegistroComidaService"; 
+// 🌟 Importación correcta del componente modular .jsx
+import ImpactoGlucemicoComida from "../components/calculos/ImpactoGlucemico";
 import "./../styles/index-global.css";
 import "./../styles/RegistrarComida.css";
 import "./../styles/responsive-ordenador.css";
@@ -23,8 +25,7 @@ export default function RegistrarComida() {
     "Cena": []
   });
 
-  // 🌟  recupera de la Base de Datos los alimentos guardados al cargar la página
-  // 🌟 ACTUALIZADO: Recupera de la Base de Datos SOLO los alimentos guardados el día de HOY
+  // 🌟 Recupera de la Base de Datos SOLO los alimentos guardados el día de HOY
   useEffect(() => {
     const recuperarRegistrosFormateados = async () => {
       try {
@@ -38,20 +39,19 @@ export default function RegistrarComida() {
           "Cena": []
         };
 
-        // Obtenemos la fecha de hoy en formato local (AAAA-MM-DD) para comparar de forma limpia
         const hoyString = new Date().toISOString().split('T')[0];
 
         registrosBackend.forEach((reg) => {
-          // Extraemos solo la parte de la fecha del registro (AAAA-MM-DD)
           const fechaRegistroString = reg.fecha.split('T')[0];
 
-          // 🌟 FILTRO REGLA DE ORO: Solo se muestra en las pestañas si se registró HOY
+          // 🌟 FILTRO REGLA DE ORO: Extraemos el impacto que calculó el Backend de forma persistente
           if (fechaRegistroString === hoyString && mapaTemporal[reg.hora_comida]) {
             mapaTemporal[reg.hora_comida].push({
               id: reg.id_alimento,
               nombre: reg.alimento?.nombre || "Alimento", 
               gramosId: reg.id_rgtcomida, 
-              racion: Number(reg.racion)
+              racion: Number(reg.racion),
+              impacto: reg.impacto_glucemico // 🌟 LEÍDO DIRECTAMENTE DESDE TU TABLA POSTGRESQL
             });
           }
         });
@@ -64,18 +64,16 @@ export default function RegistrarComida() {
     };
 
     recuperarRegistrosFormateados();
-  }, []); // Se ejecuta una sola vez al entrar a la pantalla
+  }, []); 
 
 
   const handleInputChange = (e) => {
     const valor = e.target.value;
     setBusqueda(valor);
-    
     if (valor.trim() === "") {
       limpiarResultados([]);
       return;
     }
-    
     buscarAlimentos(valor); 
   };
 
@@ -83,37 +81,50 @@ export default function RegistrarComida() {
     const gramos = prompt(`¿Cuántos gramos de ${alimento.nombre} consumiste?`, "100");
     if (!gramos || isNaN(gramos)) return;
 
+    // 🌟 CORRECCIÓN FECHA: Formateamos la fecha eliminando milisegundos y la Z de forma definitiva para Pydantic/SQLAlchemy
+    const fechaISO = new Date().toISOString(); 
+    const fechaParaPython = fechaISO.split('.')[0]; // Entrega "YYYY-MM-DDTHH:MM:SS"
+
+    // 🌟 CORRECCIÓN ENUM: Forzamos el texto exacto que pide tu modelo de base de datos en Python
+    let horaComidaFormateada = pestañaActiva.charAt(0).toUpperCase() + pestañaActiva.slice(1).toLowerCase();
+    if (horaComidaFormateada === "Media mañana") {
+      horaComidaFormateada = "Media Mañana";
+    }
+
     const nuevoRegistroPayload = {
-      id_alimento: alimento.id || alimento.id_alimento, 
+      id_alimento: Number(alimento.id_alimento || alimento.id), 
+      id_usuario: 1, // ID fijo de usuario para tu MVP
       racion: Number(gramos),
-      hora_comida: pestañaActiva, 
-      fecha: new Date().toISOString()
+      hora_comida: horaComidaFormateada, // Envía "Desayuno", "Media Mañana", etc.
+      fecha: fechaParaPython,      
+      impacto_glucemico: "Bajo" // Campo obligatorio del esquema de validación
     };
 
     try {
-      await crearRegistroComida(nuevoRegistroPayload);
+      // 🌟 CAPTURAMOS LA RESPUESTA: Almacenamos el registro devuelto por la API de FastAPI
+      const respuestaApi = await crearRegistroComida(nuevoRegistroPayload);
 
       setAlimentosAñadidos((prev) => ({
         ...prev,
         [pestañaActiva]: [
           ...prev[pestañaActiva],
           { 
-            id: alimento.id || alimento.id_alimento,
+            id: alimento.id_alimento || alimento.id,
             nombre: alimento.nombre, 
-            gramosId: Date.now(), 
-            racion: Number(gramos) // Guardamos simétrico como racion
+            gramosId: respuestaApi?.id_rgtcomida || Date.now(), // Usamos el ID real de la base de datos
+            racion: Number(gramos),
+            impacto: respuestaApi?.impacto_glucemico || "Bajo" // 🌟 PRESERVADO EN EL ESTADO EN TIEMPO REAL
           }
         ]
       }));
 
       alert(`¡${alimento.nombre} guardado con éxito en la Base de Datos!`);
-      
       setBusqueda("");
       limpiarResultados([]);
 
     } catch (err) {
-      console.error("Error técnico al registrar comida:", err);
-      alert("Lo sentimos, no se pudo guardar tu alimento en este momento. Por favor, comprueba tu conexión e inténtalo de nuevo.");
+      console.error("Error técnico al registrar comida:", err); 
+      alert("Lo sentimos, no se pudo guardar tu alimento en este momento.");
     }
   };
 
@@ -169,7 +180,7 @@ export default function RegistrarComida() {
 
           <div className="registrar__results-placeholder">
             
-            {cargando && <p style={{ color: "blue", fontStyle: "italic" }}>Buscando coincidencias en la base de datos...</p>}
+            {cargando && <p style={{ color: "blue", fontStyle: "italic" }}>Buscando...</p>}
             {error && <p style={{ color: "red" }}>❌ Error al buscar: {error}</p>}
 
             {/* LISTADO DE OPCIONES ENCONTRADAS */}
@@ -195,41 +206,39 @@ export default function RegistrarComida() {
               </div>
             )}
 
-            {/* SECCIÓN DONDE SE RENDERIZAN LOS ALIMENTOS REGISTRADOS */}
+            {/* SECCIÓN REFACTORIZADA DONDE SE RENDERIZAN LOS ALIMENTOS REGISTRADOS */}
             <div style={{ marginTop: "15px" }}>
               <p style={{ fontWeight: "bold" }}>Alimentos añadidos a tu {pestañaActiva}:</p>
               {alimentosAñadidos[pestañaActiva].length === 0 ? (
                 <p style={{ color: "#777", fontStyle: "italic" }}>No has añadido alimentos todavía.</p>
               ) : (
-                <ul style={{ listStyle: "none", padding: 0 }}>
-                  {alimentosAñadidos[pestañaActiva].map((alimento) => (
-                    <li key={alimento.gramosId} style={{ display: "flex", justifyContent: "space-between", background: "#eaf5ea", padding: "8px", borderRadius: "4px", marginBottom: "5px" }}>
-                      {/* 🌟 CORREGIDO: Cambiado cantidadGramos por racion para ver el número real de gramos */}
-                      <span>✅ {alimento.nombre} ({alimento.racion}g)</span>
-                      <button onClick={() => eliminarAlimento(alimento.gramosId)} style={{ background: "none", border: "none", color: "red", cursor: "pointer" }}>
-                        <FaTrash />
-                      </button>
-                    </li>
-                  ))}
+                <ul className="comidas-lista">
+                  {alimentosAñadidos[pestañaActiva].map((alimento) => {
+                    // Condicional para decidir la clase de color según el impacto de la base de datos
+                    let claseColor = "circulo-bajo"; 
+                    if (alimento.impacto === "Medio") claseColor = "circulo-medio"; 
+                    if (alimento.impacto === "Alto") claseColor = "circulo-alto";   
+
+                    return (
+                      <li key={alimento.gramosId} className="comida-item">
+                        
+                         {/* Contenedor Derecho: Botón eliminar con papelera */}
+                        <button 
+                          onClick={() => eliminarAlimento(alimento.gramosId)} 
+                          className="btn-eliminar-comida"
+                          title="Eliminar alimento"
+                        >
+                          <FaTrash />
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
             </div>
 
           </div>
-
-          <button className="btn btn-primary btn-calcular">
-            Calcular impacto glucémico de la comida
-          </button>
         </div>
-
-        <nav className="dashboard__navigation-buttons">
-          <Link to="/dashboard" className="btn-nav btn-nav--secondary">
-            <FaArrowLeft /> Volver al Dashboard
-          </Link>
-          <Link to="/diario" className="btn-nav btn-nav--primary">
-            Ir a Mi Diario <FaArrowRight />
-          </Link>
-        </nav>  
 
       </div>
     </main>

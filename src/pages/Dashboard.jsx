@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaPlusCircle, FaBookOpen, FaSignOutAlt, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaUtensils, FaArrowLeft, FaPlus, FaTrash, FaArrowRight,FaSignOutAlt,  FaPlusCircle,  FaBookOpen   } from "react-icons/fa";
 
 import Card from "./../components/ui/Card"; 
 import "./../styles/Dashboard.css";
