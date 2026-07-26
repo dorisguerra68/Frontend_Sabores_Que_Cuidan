@@ -1,10 +1,9 @@
 import { useAlimentos } from "./../hooks/useAlimento"; 
 import { useState, useEffect } from "react"; 
-import { FaSearch, FaUtensils, FaArrowLeft, FaPlus, FaTrash } from "react-icons/fa";
+import { FaSearch, FaUtensils, FaArrowLeft, FaArrowRight, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom"; 
 import { crearRegistroComida, listaRegistroComida } from "./../services/RegistroComidaService"; 
-// 🌟 Importación correcta del componente modular .jsx
-import ImpactoGlucemicoComida from "../components/calculos/ImpactoGlucemico";
+
 import "./../styles/index-global.css";
 import "./../styles/RegistrarComida.css";
 import "./../styles/responsive-ordenador.css";
@@ -44,14 +43,13 @@ export default function RegistrarComida() {
         registrosBackend.forEach((reg) => {
           const fechaRegistroString = reg.fecha.split('T')[0];
 
-          // 🌟 FILTRO REGLA DE ORO: Extraemos el impacto que calculó el Backend de forma persistente
-          if (fechaRegistroString === hoyString && mapaTemporal[reg.hora_comida]) {
+                    if (fechaRegistroString === hoyString && mapaTemporal[reg.hora_comida]) {
             mapaTemporal[reg.hora_comida].push({
               id: reg.id_alimento,
               nombre: reg.alimento?.nombre || "Alimento", 
               gramosId: reg.id_rgtcomida, 
               racion: Number(reg.racion),
-              impacto: reg.impacto_glucemico // 🌟 LEÍDO DIRECTAMENTE DESDE TU TABLA POSTGRESQL
+              impacto: reg.impacto_glucemico
             });
           }
         });
@@ -65,7 +63,6 @@ export default function RegistrarComida() {
 
     recuperarRegistrosFormateados();
   }, []); 
-
 
   const handleInputChange = (e) => {
     const valor = e.target.value;
@@ -81,28 +78,25 @@ export default function RegistrarComida() {
     const gramos = prompt(`¿Cuántos gramos de ${alimento.nombre} consumiste?`, "100");
     if (!gramos || isNaN(gramos)) return;
 
-    // 🌟 CORRECCIÓN FECHA: Formateamos la fecha eliminando milisegundos y la Z de forma definitiva para Pydantic/SQLAlchemy
-    const fechaISO = new Date().toISOString(); 
-    const fechaParaPython = fechaISO.split('.')[0]; // Entrega "YYYY-MM-DDTHH:MM:SS"
+        const fechaISO = new Date().toISOString(); 
+    const fechaParaPython = fechaISO.split('.')[0];
 
-    // 🌟 CORRECCIÓN ENUM: Forzamos el texto exacto que pide tu modelo de base de datos en Python
-    let horaComidaFormateada = pestañaActiva.charAt(0).toUpperCase() + pestañaActiva.slice(1).toLowerCase();
+        let horaComidaFormateada = pestañaActiva.charAt(0).toUpperCase() + pestañaActiva.slice(1).toLowerCase();
     if (horaComidaFormateada === "Media mañana") {
       horaComidaFormateada = "Media Mañana";
     }
 
     const nuevoRegistroPayload = {
       id_alimento: Number(alimento.id_alimento || alimento.id), 
-      id_usuario: 1, // ID fijo de usuario para tu MVP
+      id_usuario: 1,
       racion: Number(gramos),
-      hora_comida: horaComidaFormateada, // Envía "Desayuno", "Media Mañana", etc.
+      hora_comida: horaComidaFormateada,
       fecha: fechaParaPython,      
-      impacto_glucemico: "Bajo" // Campo obligatorio del esquema de validación
+      impacto_glucemico: "Bajo"
     };
 
     try {
-      // 🌟 CAPTURAMOS LA RESPUESTA: Almacenamos el registro devuelto por la API de FastAPI
-      const respuestaApi = await crearRegistroComida(nuevoRegistroPayload);
+            const respuestaApi = await crearRegistroComida(nuevoRegistroPayload);
 
       setAlimentosAñadidos((prev) => ({
         ...prev,
@@ -111,9 +105,9 @@ export default function RegistrarComida() {
           { 
             id: alimento.id_alimento || alimento.id,
             nombre: alimento.nombre, 
-            gramosId: respuestaApi?.id_rgtcomida || Date.now(), // Usamos el ID real de la base de datos
+            gramosId: respuestaApi?.id_rgtcomida || Date.now(),
             racion: Number(gramos),
-            impacto: respuestaApi?.impacto_glucemico || "Bajo" // 🌟 PRESERVADO EN EL ESTADO EN TIEMPO REAL
+            impacto: respuestaApi?.impacto_glucemico || "Bajo"
           }
         ]
       }));
@@ -206,7 +200,7 @@ export default function RegistrarComida() {
               </div>
             )}
 
-            {/* SECCIÓN REFACTORIZADA DONDE SE RENDERIZAN LOS ALIMENTOS REGISTRADOS */}
+            {/* SECCIÓN DONDE SE RENDERIZAN LOS ALIMENTOS REGISTRADOS */}
             <div style={{ marginTop: "15px" }}>
               <p style={{ fontWeight: "bold" }}>Alimentos añadidos a tu {pestañaActiva}:</p>
               {alimentosAñadidos[pestañaActiva].length === 0 ? (
@@ -214,16 +208,15 @@ export default function RegistrarComida() {
               ) : (
                 <ul className="comidas-lista">
                   {alimentosAñadidos[pestañaActiva].map((alimento) => {
-                    // Condicional para decidir la clase de color según el impacto de la base de datos
-                    let claseColor = "circulo-bajo"; 
+                                        let claseColor = "circulo-bajo"; 
                     if (alimento.impacto === "Medio") claseColor = "circulo-medio"; 
                     if (alimento.impacto === "Alto") claseColor = "circulo-alto";   
 
                     return (
                       <li key={alimento.gramosId} className="comida-item">
+<span>{alimento.nombre} ({alimento.racion}g) - <span className={claseColor}>{alimento.impacto}</span></span>
                         
-                         {/* Contenedor Derecho: Botón eliminar con papelera */}
-                        <button 
+                                                 <button 
                           onClick={() => eliminarAlimento(alimento.gramosId)} 
                           className="btn-eliminar-comida"
                           title="Eliminar alimento"
@@ -241,6 +234,16 @@ export default function RegistrarComida() {
         </div>
 
       </div>
+
+      {/* 🚀 BOTONES RADICALES DE NAVEGACIÓN (Estrategia de Entrega Rápida) */}
+      <nav className="dashboard__navigation-buttons">
+        <Link to="/" className="btn-nav btn-nav--secondary">
+          <FaArrowLeft /> Volver al Inicio
+        </Link>
+        <Link to="/registrar-comida" className="btn-nav btn-nav--primary">
+          Avanzar <FaArrowRight />
+        </Link>
+      </nav>
     </main>
   );
 }
