@@ -27,8 +27,8 @@ export default function Welcome() {
             <Link to="/dashboard" className="btn btn-primary">
               Entrar →
             </Link>
-            <Link to="/registrar-comida" className="btn btn-secondary">
-              Más información
+            <Link to="/diario" className="btn btn-secondary">
+              Mi Diario
             </Link>
           </div> {/* 💡 Este div cierra correctamente a .hero__buttons */}
           
