@@ -301,6 +301,7 @@ export const Diary = () => {
           </div>
         </div>
       </section>
+
     </div>
   );
 };

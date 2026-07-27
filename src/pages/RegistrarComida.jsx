@@ -245,7 +245,7 @@ export default function RegistrarComida() {
         <Link to="/" className="btn-nav btn-nav--secondary">
           <FaArrowLeft /> Volver al Inicio
         </Link>
-        <Link to="/registrar-comida" className="btn-nav btn-nav--primary">
+        <Link to="/diario" className="btn-nav btn-nav--primary">
           Avanzar <FaArrowRight />
         </Link>
       </nav>
