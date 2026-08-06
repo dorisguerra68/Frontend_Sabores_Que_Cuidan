@@ -1,41 +1,4 @@
-/*boton*/
-.btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:0.9rem 1.5rem;
-
-    border:none;
-    border-radius:var(--radius);
-
-    font-size:1rem;
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:all .3s ease;
-}
-
-.btn-primary{
-    background:var(--color-primary);
-    color:white;
-}
-
-.btn-primary:hover{
-    background:var(--color-button-hover);
-    transform:translateY(-2px);
-}
-.btn-outline{
-    background:white;
-    color:var(--color-primary);
-
-    border:2px solid var(--color-primary);
-}
-
-.btn-outline:hover{
-    background:#f4f4f4;
-}
+/* Buttons moved to Variables.css (centralized) */
 
 
 

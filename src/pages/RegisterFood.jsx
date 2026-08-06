@@ -1,15 +1,13 @@
-import { useAlimentos } from "./../hooks/useAlimento"; 
+import { useAlimentos } from "./../hooks/useFood"; 
 import { useState, useEffect } from "react"; 
 import { FaSearch, FaUtensils, FaArrowLeft, FaArrowRight, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom"; 
-import { crearRegistroComida, listaRegistroComida } from "./../services/RegistroComidaService"; 
+import { crearRegistroComida, listaRegistroComida } from "./../services/foodRegistrationService"; 
 
 import "./../styles/index-global.css";
-import "./../styles/RegistrarComida.css";
-import "./../styles/responsive-ordenador.css";
-import "./../styles/responsive-movil.css";
+import "./../styles/RegisterFood.css";
 
-export default function RegistrarComida() {
+export default function RegisterFood() {
   const comidas = ["Desayuno", "Media Mañana", "Comida", "Merienda", "Cena"];
   const [pestañaActiva, setPestañaActiva] = useState("Desayuno");
   const [busqueda, setBusqueda] = useState("");

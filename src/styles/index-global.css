@@ -24,34 +24,7 @@ body {
 }
 
 
-/* ----------------------------
-   Botones
----------------------------- */
-.btn {
-  padding: var(--spacing-sm) var(--spacing-md);
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background-color: var(--color-button-hover);
-}
-
-/* Botón secundario */
-.btn-secondary {
-  background-color: white;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-}
-
-.btn-secondary:hover {
-  background-color: var(--color-light);
-}
+/* Buttons are centralized in Variables.css (import Variables.css first) */
 
 /* ----------------------------
    Contenedores

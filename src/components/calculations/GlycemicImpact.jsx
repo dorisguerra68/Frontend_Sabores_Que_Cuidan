@@ -1,5 +1,5 @@
 import { FaCheckCircle, FaExclamationTriangle, FaInfoCircle } from "react-icons/fa";
-import "./../../styles/ImpactoGlucemico.css"; // 🌟 Importamos la nueva hoja de estilos CSS separada
+import "./../../styles/GlycemicImpact.css"; // 🌟 Importamos la nueva hoja de estilos CSS separada
 
 export default function ImpactoGlucemicoComida({ alimentos }) {
   // Si la lista está vacía o no hay alimentos en ese momento del día, no pintamos nada
