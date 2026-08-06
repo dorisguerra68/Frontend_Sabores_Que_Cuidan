@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"; // 💡 Añadido el import necesario para los enlaces
 import "./../styles/index-global.css";
 import "./../styles/Welcome.css";
-import "./../styles/responsive-ordenador.css";
-import "./../styles/responsive-movil.css";
 import comer1 from "./../assets/images/comer1.png";
 import logo2 from "./../assets/images/logo2.png";
 
@@ -24,10 +22,10 @@ export default function Welcome() {
           </p>
 
           <div className="hero__buttons">
-            <Link to="/dashboard" className="btn btn-primary">
+            <Link to="/dashboard" className="btn btn--primary">
               Entrar →
             </Link>
-            <Link to="/diario" className="btn btn-secondary">
+            <Link to="/diario" className="btn btn--secondary">
               Mi Diario
             </Link>
           </div> {/* 💡 Este div cierra correctamente a .hero__buttons */}
