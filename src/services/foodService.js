@@ -64,7 +64,7 @@ export const eliminarAlimento = async (id) => {
 };
 
 // Buscar un alimento
-// Buscar un alimento (Alineado con tu Swagger real)
+// Buscar un alimento (Alineado con el Swagger real)
 export const buscarAlimento = async (termino) => {
   try {
     // Apuntamos directamente a la ruta raíz que viste en Swagger: /alimento/

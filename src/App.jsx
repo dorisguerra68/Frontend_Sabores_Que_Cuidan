@@ -5,8 +5,8 @@ import RegisterLayout from "./layouts/RegisterLayout"; // Tu layout reutilizable
 
 // 💡 Importamos tus páginas reales existentes
 import Dashboard from "./pages/Dashboard";
-import RegistrarComida from "./pages/RegistrarComida";
-import {Diary  } from "./pages/Diary"; // Tu archivo del Diario
+import RegisterFood from "./pages/RegisterFood";
+import { Diary } from "./pages/Diary"; // Tu archivo del Diario
 
 export default function App() {
   return (
@@ -36,7 +36,7 @@ export default function App() {
         path="/registrar-comida"
         element={
           <RegisterLayout>
-            <RegistrarComida />
+            <RegisterFood />
           </RegisterLayout>
         }
       />

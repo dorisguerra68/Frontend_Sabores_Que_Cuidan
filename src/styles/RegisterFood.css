@@ -270,37 +270,18 @@
   box-sizing: border-box;
 }
 
-.btn-nav {
-  display: inline-flex;
+.btn-nav { /* visual & spacing centralized in Variables.css */ }
+
+/* Keep page-level layout constraints for the nav buttons */
+.dashboard__navigation-buttons {
+  display: flex;
+  justify-content: space-between; /* Empuja un botón a cada extremo */
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Botón Izquierdo: Volver al Inicio (Crema/Gris suave) */
-.btn-nav--secondary {
-  background-color: #f5eedc; /* Color crema de tu diseño */
-  color: #3e2723;
-}
-
-.btn-nav--secondary:hover {
-  background-color: #ede3cc;
-}
-
-/* Botón Derecho: Avanzar (Verde Nutricional) */
-.btn-nav--primary {
-  background-color: #657e3c; /* Verde oliva de tu marca */
-  color: #ffffff;
-}
-
-.btn-nav--primary:hover {
-  background-color: #536930;
+  width: 100%;
+  max-width: 800px; /* Adapta este ancho al tamaño máximo de tu contenedor */
+  margin: 30px auto 0 auto; /* Separa los botones de la caja blanca */
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 

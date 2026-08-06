@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { buscarAlimento } from '../services/alimentoService'; // 👈 Asegúrate de que la ruta a tu archivo service sea la correcta
-
+import { buscarAlimento } from '../services/foodService';
 export function useAlimentos() {
   const [alimentos, setAlimentos] = useState([]); 
   const [cargando, setCargando] = useState(false); 

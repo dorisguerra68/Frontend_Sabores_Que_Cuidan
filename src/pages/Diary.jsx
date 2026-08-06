@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaTrash } from "react-icons/fa";
-import { useAlimentos } from "./../hooks/useAlimento"; 
-import { crearRegistroComida, listaRegistroComida } from "./../services/RegistroComidaService"; 
+import { useAlimentos } from "./../hooks/useFood"; 
+import { crearRegistroComida, listaRegistroComida } from "./../services/foodRegistrationService"; 
 
 import "./../styles/index-global.css";
 import "./../styles/Diary.css";
-import "./../styles/responsive-ordenador.css";
-import "./../styles/responsive-movil.css";
 
 export const Diary = () => {
   const [selectedDay, setSelectedDay] = useState(16);
