@@ -2,23 +2,8 @@
 
 
 
-/*card*/
-.card {
-  background: white;
-  padding: var(--spacing-md);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.card{
-    background:white;
-
-    border-radius:var(--radius);
-
-    box-shadow:var(--shadow);
-
-    overflow:hidden;
-}
+/* Card base moved to Variables.css; keep overflow rule if component needs it */
+.card { overflow: hidden; }
 
 /* SELECT FIELD WRAPPER */
 .select-field {

@@ -83,22 +83,16 @@
 }
 
 .card {
-    background-color: var(--color-surface);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: var(--shadow);
+    /* Page-specific card overrides: base card is centralized in Variables.css */
+    border-radius: 20px; /* slight increase for dashboard look */
+    padding: 2.5rem; /* larger spacing for dashboard */
     display: flex;
     gap: 1.5rem;
     align-items: flex-start;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.03);
-    cursor: pointer;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-large);
-}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 
 .card-icon, .card__icon-wrapper {
     background-color: #f0e6cf;
@@ -133,43 +127,10 @@
 }
 
 /* Contenedor de botones de navegación inferiores */
-.dashboard__navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
-    width: 100%;
-}
+.dashboard__navigation-buttons { /* layout kept minimal; visual variants in Variables.css */ }
 
-.btn-nav {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
-    font-weight: 600;
-    border-radius: 12px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.btn-nav--primary {
-    background-color: var(--color-primary);
-    color: white;
-}
-
-.btn-nav--secondary {
-    background-color: #f0e6cf;
-    color: var(--color-text);
-}
-
-.btn-nav:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
+/* .btn-nav variants centralized in Variables.css; keep page-level min-width or layout rules here if needed */
+.dashboard__navigation-buttons .btn-nav { min-width: 140px; }
 
 /* Estructura del Footer */
 .dashboard__footer {
@@ -235,8 +196,6 @@
         flex-direction: column;
         gap: 1rem;
     }
-    .btn-nav {
-        width: 100%; /* Ocupan todo el ancho en el celular */
-    }
+    .dashboard__navigation-buttons .btn-nav { width: 100%; }
 
 }

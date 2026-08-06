@@ -22,10 +22,10 @@ export default function Welcome() {
           </p>
 
           <div className="hero__buttons">
-            <Link to="/dashboard" className="btn btn-primary">
+            <Link to="/dashboard" className="btn btn--primary">
               Entrar →
             </Link>
-            <Link to="/diario" className="btn btn-secondary">
+            <Link to="/diario" className="btn btn--secondary">
               Mi Diario
             </Link>
           </div> {/* 💡 Este div cierra correctamente a .hero__buttons */}

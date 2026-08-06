@@ -290,3 +290,50 @@ header,
 body > a {
     display: none !important;
 }
+
+/* -----------------------------
+     Mobile: place image first, green panel below
+     - image on top, `.welcome__content` stacked under it
+     - reduce large paddings and remove full-viewport min-heights
+     ----------------------------- */
+@media (max-width: 768px) {
+    .welcome__container {
+        flex-direction: column-reverse; /* DOM: content then image -> reverse to put image on top */
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .welcome__image-section {
+        width: 100%;
+        min-height: auto;
+        padding: 1rem 0;
+        order: -1; /* ensure image is visually first in case other rules apply */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .welcome__image-photo {
+        width: 100%;
+        max-width: 360px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+    }
+
+    .welcome__content {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto; /* prevent taking full viewport height */
+        padding: 2rem 1rem;
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .hero__title { font-size: 2.2rem; }
+    .hero__description { font-size: 1rem; max-width: 100%; }
+    .hero__buttons { justify-content: center; }
+    .result-card { position: static; margin: 1rem auto; transform: none; }
+}
