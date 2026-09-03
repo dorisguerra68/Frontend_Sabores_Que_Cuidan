@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { FaArrowLeft, FaTrash } from "react-icons/fa";
+import { useState, useEffect } from 'react';
+import { FaTrash } from "react-icons/fa";
 import { useAlimentos } from "./../hooks/useFood"; 
 import { crearRegistroComida, listaRegistroComida } from "./../services/foodRegistrationService"; 
 
@@ -222,6 +221,7 @@ export const Diary = () => {
 
       {/* Dropdown de resultados de la API */}
       {cargando && <p style={{color: "blue", padding: "0 10px"}}>Buscando...</p>}
+      {error && <p style={{color: "#b42318", padding: "0 10px"}}>{error}</p>}
       {resultados.length > 0 && (
         <div className="search-results-dropdown">
           {resultados.map((alimento) => (
