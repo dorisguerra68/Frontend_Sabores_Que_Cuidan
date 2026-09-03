@@ -46,14 +46,16 @@
   --btn-radius: var(--radius);
   --btn-font-size: 1rem;
   --btn-font-weight: 600;
-}
+
   /* Darker accents for button outlines and shadows */
-  --color-primary-dark: #556224; /* darker olive for primary outline */
-  --color-secondary-dark: #d18536; /* darker orange for secondary outline */
+  --color-primary-dark: #556224; 
+  --color-secondary-dark: #d18536; 
   --btn-border-primary: 3px solid var(--color-primary-dark);
   --btn-border-secondary: 3px solid var(--color-secondary-dark);
   --btn-shadow-primary: 0 14px 44px rgba(85,98,36,0.22);
   --btn-shadow-secondary: 0 14px 44px rgba(209,133,54,0.20);
+
+  }
 
 /* ==================================================================
    Base / Utilities
